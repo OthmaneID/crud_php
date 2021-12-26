@@ -47,7 +47,7 @@
 <tbody>
     <?php
     $products=displayData();
-    foreach($products as $i=>$product){
+    foreach($products as $i=>$product):
         echo "<tr>" 
         . "<th scope='row'> ". ($i+1). "</th>";
               
@@ -76,17 +76,21 @@
          echo  "edit";
          echo"</button>";
          echo "</td>";
-         echo "<td>";
-         echo "<button type='button' class='btn  btn-outline-warning'>";
+         echo "<td>";?>
+         <form action="delete.php" method="post">
+             <input type="hidden" name="id" value=<?= $product['id'] ?>>
+            <button type='submit' class='btn  btn-outline-warning' >
+         </form>
+         <?php
+        //  echo " ";
          echo "delete";
          echo "</button>";
          echo "</td>";
         echo"</tr>";
-    }
+        endforeach;
     ?>
   </tbody>
 </table>
-
 
 
 
