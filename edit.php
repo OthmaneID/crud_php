@@ -47,8 +47,9 @@ $prod=$statement->fetchAll(PDO::FETCH_ASSOC);
         <div class="container-fluid text-center bg-dark text-light py-2 rounded">
           <h1>Crud Product</h1>
         </div>
-    <h1 class="text-center pt-5" >EDIT a Product</h1>
-    <form action="update.php" method="post" class="" >
+    <h1 class="text-center pt-3" >EDIT a Product</h1>
+    <form action="update.php" method="post" enctype="multipart/form-data" >
+        <input type="hidden" name="id" value=<?=$id ?>>
 
             <div class="form-group mb-3">
             <label for="Title" class="form-label">Title*: </label>
@@ -58,8 +59,10 @@ $prod=$statement->fetchAll(PDO::FETCH_ASSOC);
         <div class="form-group mb-3">
             <label for="description" class="form-label">description:</label>
             <textarea class="form-control" name="description" 
-            value=<?=$prod[0]["description"] ?> 
-            id="description" rows="3"></textarea>
+             
+            id="description" rows="3">
+            <?php echo $prod[0]["description"] ?>
+        </textarea>
         </div>
         <div class="form-group mb-3">
             <label for="price">Price*:</label>
@@ -69,7 +72,7 @@ $prod=$statement->fetchAll(PDO::FETCH_ASSOC);
         <div class="form-group mb-3 text-center">
             <label id="label-img" for="image"><strong> Image: </strong>
                 <i class="fas fa-images btn btn-outline-warning rounded-circle btn-lg " ></i> <br>
-                <span id="file-name" > <?php   echo str_replace("./images/","",$prod[0]["image"]) ?>  </span>
+                <span id="file-name" > <?php  echo(str_replace("./images/","",$prod[0]["image"])) ?>  </span>
             </label>
             <input type="file" name="image" id="image" hidden>
             <!-- script for showing the selected file name -->
@@ -79,7 +82,7 @@ $prod=$statement->fetchAll(PDO::FETCH_ASSOC);
                 })
             </script>
         </div>
-        <button type="submit" class="btn btn-primary" >Submit</button>
+        <button type="submit" class="btn btn-primary" >UPDATE</button>
 
 
        

@@ -57,12 +57,6 @@ function createCon(){
 
         header('location: index.php');
 
-
-        
-        
-          
-        
- 
     }
 
 
