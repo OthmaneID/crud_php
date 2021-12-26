@@ -71,8 +71,13 @@
          echo "<td>";
          echo $product['create_date'];
          echo "</td>";
-         echo "<td>";
-         echo "<button type='button' class='btn btn-outline-danger'>";
+         echo "<td>";?>
+         <form action="edit.php" method="get">
+             <input type="hidden" name="idE" value=<?= $product['id'] ?>>
+         <button type='submit' class='btn btn-outline-danger'>
+
+         </form>
+         <?php
          echo  "edit";
          echo"</button>";
          echo "</td>";

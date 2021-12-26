@@ -24,12 +24,12 @@ if(!$id){
 
         $statement->execute();
 
-        $res=$statement->setFetchMode(PDO::FETCH_ASSOC);
+        $res=$statement->FetchAll(PDO::FETCH_ASSOC);
 
         $sql="DELETE FROM products WHERE id=$id ";
         
         if($res!=null){
-            unlink($res);
+            unlink($res[0]["image"]);
         }
         $GLOBALS["pdo"]->exec($sql);
         header("location:index.php",true);
@@ -39,9 +39,6 @@ if(!$id){
     }
     
     
-
-
-
 
 
 ?>
