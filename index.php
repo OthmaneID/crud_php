@@ -53,7 +53,7 @@
 
             <form action="" method="get" >
               <div class="input-group mb-4">
-                <input class="form-control" type="text" name="search" id="search" placeholder="Search">
+                <input class="form-control" type="text" name="search" id="search" placeholder="Search" value=<?= "$search" ?>>
                 <div class="input-group-append">
 
                   <button class="btn btn-outline-secondary" type="submit" id="btn-search"  >
