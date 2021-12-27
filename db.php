@@ -27,6 +27,25 @@ function createCon(){
         
         return $products;
  }
+ function displayProd($searchWord){
+    
+    $serverName="localhost";
+    $username="root";
+    $password="";
+    
+    $pdo=new PDO("mysql:host${serverName};port=3306;dbname=products_crud",$username,$password);
+
+    $pdo->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+
+    $statement=$pdo->prepare("SELECT * FROM products WHERE title like :title ORDER by create_date DESC");
+
+$statement->bindValue(':title',"%$searchWord%");
+    $statement->execute();
+
+    $product=$statement->fetchAll(PDO::FETCH_ASSOC);
+
+    return $product;
+ }
 
 
  function createProduct(){
