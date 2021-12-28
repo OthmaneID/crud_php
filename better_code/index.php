@@ -1,3 +1,4 @@
+<!-- Displaying the all Product  and the Filtered Products  -->
 <?php
    require_once "database.php";
    
@@ -10,8 +11,58 @@
     }
 ?>
 
+<!-- Deleting the Product -->
 <?php
-include_once "./views/partials/header.php";
+
+  $clicked_del=$_POST['del-click'] ?? null ;
+  if($clicked_del){
+
+    $serverName="localhost";
+    $username="root";
+    $password="";
+    $GLOBALS['pdo']=new PDO("mysql:host${serverName};port=3306;dbname=products_crud",$username,$password);
+
+    // set the PDO error mode to exception
+    $GLOBALS['pdo']->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+
+
+
+
+    $id=$_POST['id-del'] ?? null;
+
+    if(!$id){
+        header('location:index.php');
+        exit;
+    }
+    try{
+        $imgSql="SELECT image FROM products WHERE id=$id";
+
+        $statement=$GLOBALS['pdo']->prepare($imgSql);
+
+        $statement->execute();
+
+        $res=$statement->FetchAll(PDO::FETCH_ASSOC);
+
+        $sql="DELETE FROM products WHERE id=$id ";
+        
+        if($res!=null){
+            unlink($res[0]["image"]);
+        }
+        $GLOBALS["pdo"]->exec($sql);
+        header("location:index.php",true);
+    }catch(PDOException $ex)
+    {
+        echo "error". $ex->getMessage();
+    }
+    
+}
+
+
+?>
+
+<!-- The Head -->
+<?php
+  include_once "./views/partials/header.php";
 ?>
   <body>
         <div class=" text-center container-fluid  bg-dark text-light py-2 rounded">
@@ -86,8 +137,9 @@ include_once "./views/partials/header.php";
          echo"</button>";
          echo "</td>";
          echo "<td>";?>
-         <form action="delete.php" method="post">
-             <input type="hidden" name="id" value=<?= $product['id'] ?>>
+         <form action="" method="post">
+             <input type="hidden" name="id-del" value=<?= $product['id'] ?>>
+             <input type="hidden" name="del-click" value=<?=true?>>
             <button type='submit' class='btn  btn-outline-warning' >
          </form>
          <?php
