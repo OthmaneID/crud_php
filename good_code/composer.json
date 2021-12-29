@@ -1,0 +1,16 @@
+{
+    "name": "dell/good_code",
+   
+    "authors": [
+        {
+            "name": "OthmaneID",
+            "email": "othmanid5@users.noreply.github.com"
+        }
+    ],
+    "require": {} ,
+    "autoload": {
+        "psr-4": {
+            "app\\": "./"
+        }
+    }
+}
